@@ -1,0 +1,20 @@
+#ifndef _CarControl
+#define _CarControl
+
+class CarControl
+{
+private:
+    int pinEngine;
+public:
+    CarControl();
+    CarControl(int pin);
+    ~CarControl();
+    void go();
+    void stop();
+    int getPin();
+};
+
+
+
+
+#endif

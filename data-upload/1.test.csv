@@ -1,0 +1,31 @@
+#include "CarControl.h"
+#include "Arduino.h"
+
+CarControl::CarControl(int pin)
+{
+    Serial.println("CREATION: " + pin);
+    pinEngine = pin;
+}
+
+CarControl::CarControl(){
+    pinEngine = 0;
+}
+CarControl::~CarControl()
+{
+}
+
+void CarControl::go(){
+    String com = "GO FROM CAR " + pinEngine;
+    Serial.println(com);
+    digitalWrite(pinEngine, 1);
+}
+
+void CarControl::stop(){
+    //String com = "GO FROM CAR " + std::to_string(pinEngine);
+    //Serial.println(com);
+    digitalWrite(pinEngine, 0);
+}
+
+int CarControl::getPin(){
+    return pinEngine;
+}
