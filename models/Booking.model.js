@@ -26,9 +26,16 @@ const deleteBookingById = async (id) => {
     return results;
 }
 
+const updateBookingById = async (id, idZone, people, comments, date) => {
+    const [results] = await pool.query(`update ${TABLE_SQL} set idZone=?, people=?, comments=?, date=? where id=?`, [idZone, people, comments, date, id]);
+
+    return results;
+};
+
 module.exports = {
     getBookings: getBookings,
     getBookingsByDate: getBookingsByDate,
     insertBooking: insertBooking,
-    deleteBookingById: deleteBookingById
+    deleteBookingById: deleteBookingById,
+    updateBookingById: updateBookingById
 }

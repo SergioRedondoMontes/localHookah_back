@@ -1,6 +1,6 @@
 const {getZones} = require("../models/Zone.model");
 
-const {getBookings, getBookingsByDate, insertBooking, deleteBookingById} = require("../models/Booking.model");
+const {getBookings, getBookingsByDate, insertBooking, deleteBookingById, updateBookingById} = require("../models/Booking.model");
 
 const {bookingValidator} = require("../validators/Booking.validator")
 
@@ -66,11 +66,35 @@ const deleteBooking = async (req, res) => {
     }
 }
 
+const updateBooking = async (req, res) => {
+    const {idBooking} = req.params;
+
+    if (idBooking === undefined) {
+        return res.json({success: 0, message: "id not found"})
+    }
+    const body = req.body;
+
+    const {errors, isValid} = bookingValidator(body);
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const result = await updateBookingById(idBooking, body.zone, body.people, body.comments, body.date);
+
+    if (result.affectedRows > 0) {
+        return res.json({success: 1, message: "inserted correctly"});
+    } else {
+        return res.json({success: 0, message: "something wrong"});
+    }
+
+}
+
 
 module.exports = {
     listZones: listZones,
     listBookings: listBookings,
     listBookingsDate: listBookingsDate,
     createBooking: createBooking,
-    deleteBooking: deleteBooking
+    deleteBooking: deleteBooking,
+    updateBooking: updateBooking
 }
