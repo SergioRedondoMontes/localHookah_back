@@ -34,17 +34,18 @@ const listBookingsDate = async (req, res) => {
 }
 
 const createBooking = async (req, res) => {
-    console.log("¿?", req.body);
+
     const body = req.body;
-    console.log("::", body)
+
     const {errors, isValid} = bookingValidator(body);
     if (!isValid) {
         return res.status(400).json(errors);
     }
 
-    const result = await insertBooking(body.zone, body.people, body.comments, body.date);
+    const result = await insertBooking(body.zone, body.people, body.title, body.comments, body.date);
+    console.log("T:", result);
     if (result.affectedRows > 0) {
-        return res.json({success: 1, message: "inserted correctly"});
+        return res.json({success: 1, message: "inserted correctly", id: result.insertId});
     } else {
         return res.json({success: 0, message: "something wrong"});
     }
@@ -79,7 +80,7 @@ const updateBooking = async (req, res) => {
         return res.status(400).json(errors);
     }
 
-    const result = await updateBookingById(idBooking, body.zone, body.people, body.comments, body.date);
+    const result = await updateBookingById(idBooking, body.zone, body.people, body.title, body.comments, body.date);
 
     if (result.affectedRows > 0) {
         return res.json({success: 1, message: "inserted correctly"});

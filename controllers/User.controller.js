@@ -92,7 +92,7 @@ const register = async (req, res) => {
         }
         const actualInsertId = results.insertId;
 
-        const insertRole = await addIdRoleForIdUser(body.role || 4, actualInsertId);
+        const insertRole = await addIdRoleForIdUser(body.role || 2, actualInsertId);
 
         const resultsActivation = createActivationUser(actualInsertId, uuidUser);
         if (resultsActivation.affectedRows < 1) {

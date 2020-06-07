@@ -14,8 +14,8 @@ const getBookingsByDate = async (dateStart, dateEnd) => {
     return results;
 };
 
-const insertBooking = async (idZone, people, comments, date) => {
-    const [results] = await pool.query(`insert into ${TABLE_SQL} (idZone, people, comments, date) values(?,?,?,?)`, [idZone, people, comments, date]);
+const insertBooking = async (idZone, people, title, comments, date) => {
+    const [results] = await pool.query(`insert into ${TABLE_SQL} (idZone, people,title, comments, date) values(?,?,?,?,?)`, [idZone, people, title, comments, date]);
 
     return results;
 };
@@ -26,8 +26,8 @@ const deleteBookingById = async (id) => {
     return results;
 }
 
-const updateBookingById = async (id, idZone, people, comments, date) => {
-    const [results] = await pool.query(`update ${TABLE_SQL} set idZone=?, people=?, comments=?, date=? where id=?`, [idZone, people, comments, date, id]);
+const updateBookingById = async (id, idZone, people, title, comments, date) => {
+    const [results] = await pool.query(`update ${TABLE_SQL} set idZone=?, people=?, title=?, comments=?, date=? where id=?`, [idZone, people, title, comments, date, id]);
 
     return results;
 };

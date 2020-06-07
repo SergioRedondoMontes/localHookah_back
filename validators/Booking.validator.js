@@ -10,6 +10,7 @@ const bookingValidator = (data) => {
     data.people = !isEmpty(data.people) ? data.people : "";
     data.zone = !isEmpty(data.zone) ? data.zone : "";
     data.comments = !isEmpty(data.comments) ? data.comments : "";
+    data.title = !isEmpty(data.title) ? data.title : "";
 
 
     if (Validator.isEmpty(data.people)) {
@@ -23,6 +24,9 @@ const bookingValidator = (data) => {
     }
     if (Validator.isEmpty(data.comments)) {
         errors.comments = "comments field is required";
+    }
+    if (Validator.isEmpty(data.title)) {
+        errors.title = "title field is required";
     }
 
     return {

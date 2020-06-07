@@ -77,6 +77,7 @@ CREATE TABLE `bookings`
     `id`       int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `idZone`   int(11) NOT NULL,
     `people`   int(11) NOT NULL,
+    `title` TEXT NOT NULL,
     `comments` TEXT,
     `date`     TIMESTAMP     default CURRENT_TIMESTAMP,
     FOREIGN KEY (idZone) REFERENCES zones (id)
@@ -88,5 +89,5 @@ CREATE TABLE `bookings`
 INSERT INTO `zones`(`id`, `name`)
 VALUES (1, 'interior'),
        (2, 'exterior');
-INSERT INTO `bookings` (`id`, `idZone`, `people`, `comments`, `date`)
-VALUES (1, 1, 4, '',  '2020-05-20 20:00:00');
+INSERT INTO `bookings` (`id`, `idZone`, `people`,`title`, `comments`, `date`)
+VALUES (1, 1, 4,'tit', '',  '2020-05-20 20:00:00');
